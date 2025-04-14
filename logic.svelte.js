@@ -11,7 +11,7 @@ export class ImperativeComponent {
   /** @type {import('svelte').SvelteComponent} */
   #mountedComponent;
   /** @type {T} */
-  #props;
+  #props = $state({});
 
   /**
    * Creates and mounts a new Svelte component with modifiable props.
@@ -29,7 +29,7 @@ export class ImperativeComponent {
    * ```
    */
   constructor(container, component, initialProps = {}) {
-    this.#props = $state(initialProps);
+    Object.assign(this.#props, initialProps);
     this.#mountedComponent = mount(component, {
       target: container,
       intro: true,
