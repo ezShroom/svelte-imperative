@@ -1,13 +1,33 @@
 {
   "name": "svelte-imperative",
-  "module": "index.js",
   "version": "1.0.0",
-  "description": "Lightweight helper to mount Svelte 5 components imperatively, but still keep them reactive.",
-  "type": "module",
-  "devDependencies": {
-    "@types/bun": "latest"
+  "author": "ezShroom",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ezShroom/svelte-imperative"
   },
+  "module": "index.js",
   "peerDependencies": {
     "svelte": "^5.0.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/ezShroom/svelte-imperative/issues"
+  },
+  "description": "Lightweight helper to mount Svelte 5 components imperatively, but still keep them reactive.",
+  "files": [
+    "*.js",
+    "*.d.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "homepage": "https://github.com/ezShroom/svelte-imperative#readme",
+  "keywords": [
+    "svelte",
+    "svelte5",
+    "imperative",
+    "mount",
+    "reactive"
+  ],
+  "license": "MIT",
+  "type": "module"
 }
