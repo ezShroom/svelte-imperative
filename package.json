@@ -1,0 +1,13 @@
+{
+  "name": "svelte-imperative",
+  "module": "index.js",
+  "version": "1.0.0",
+  "description": "Lightweight helper to mount Svelte 5 components imperatively, but still keep them reactive.",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "svelte": "^5.0.0"
+  }
+}
