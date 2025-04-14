@@ -1,6 +1,6 @@
 {
   "name": "svelte-imperative",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "ezShroom",
   "repository": {
     "type": "git",
@@ -13,7 +13,7 @@
   "bugs": {
     "url": "https://github.com/ezShroom/svelte-imperative/issues"
   },
-  "description": "Lightweight helper to mount Svelte 5 components imperatively while allowing for changes to props.",
+  "description": "Lightweight helper to mount Svelte 5 components imperatively while allowing for changes to props",
   "files": [
     "*.js",
     "*.d.ts",
