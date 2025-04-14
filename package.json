@@ -13,7 +13,7 @@
   "bugs": {
     "url": "https://github.com/ezShroom/svelte-imperative/issues"
   },
-  "description": "Lightweight helper to mount Svelte 5 components imperatively, but still keep them reactive.",
+  "description": "Lightweight helper to mount Svelte 5 components imperatively while allowing for changes to props.",
   "files": [
     "*.js",
     "*.d.ts",
