@@ -1,10 +1,12 @@
-# svelte-imperative - imperative components for svelte 5
+# svelte-imperative - a stateful wrapper for svelte 5 imperative components
 
-Svelte provides the [imperative component API](https://svelte.dev/docs/svelte/imperative-component-api) to create components without a framework like SvelteKit. However, it can be difficult to make the props reactive in Svelte 5 because the `mount` function takes a state variable in (instead of returning functions to update props as in Svelte 4), and state runes behave differently in `svelte.js` files than they do in `.svelte` files, making them difficult to manage correctly.
+**tl;dr**: Svelte 5 killed `$set` but didn’t replace it. This package wraps the new `mount()` API to give you prop updates without fighting proxies in .svelte.js files.
 
-Generally, you should prefer SvelteKit as it does this for you ([even in SPAs](https://svelte.dev/docs/kit/page-options#ssr)), but there are cases where you may still want to use the imperative API, like when using Svelte for only _part_ of a page.
+**👉 Use this if:**
 
-This project provides a class to make handling reactivity in imperative components easier by making prop updates imperative again.
+- You’re stuck with imperative components (browser extensions, partial rendering, legacy code, etc). **SvelteKit is a better solution in most cases, and does this for you.**
+- You miss Svelte 4’s `$set`, or just generally think that kind of interface is better for you
+- You’ve tried `$state` for reactivity with imperative components in `.svelte.js` and now hate proxies
 
 ## Installation
 
@@ -14,13 +16,23 @@ bun i svelte-imperative # (or any other package manager)
 
 You'll also need to have Svelte 5 or newer installed. For Svelte 4 and below, use the [`$set` function](https://svelte.dev/docs/svelte/legacy-component-api#$set) with the official imperative component API instead.
 
+## Why?
+
+Svelte 5’s new `mount()` forces you to pass reactive state in (there is no way to do it imperatively as in Svelte 4 anymore), but:
+
+- `.svelte.js` reactivity is janky (state breaks on direct reassignment, unlike in `.svelte` files)
+- State generally works best at the top-level, which might not be what you want if you have a lot of components
+- Apps not using SvelteKit get left behind, mostly
+
+This package bridges the gap.
+
 ## Usage
 
 ```ts
-import { ReactiveImperativeComponent } from "svelte-imperative";
+import { ImperativeComponent } from "svelte-imperative";
 import MyComponent from "./MyComponent.svelte";
 
-const myComponent = new ReactiveImperativeComponent(
+const myComponent = new ImperativeComponent(
   document.getElementById("app"),
   MyComponent,
   { message: "Hello, world!", element: "h1" }
@@ -33,13 +45,14 @@ myComponent.destroy(); // Destroy the component. This is also implemented in the
 
 ### Type Safety
 
-The `ReactiveImperativeComponent` class will automatically infer types for your props when using TypeScript. To type an instance of a component (like `myComponent` in the example above), you can use the `ReactiveImperativeComponentOf<>` generic type:
+The `ImperativeComponent` class will automatically infer types for your props when using TypeScript. To type an instance of a component (like `myComponent` in the example above), you can use the `ImperativeComponentOf<>` generic type:
 
 ```ts
-import { ReactiveImperativeComponent, type ReactiveImperativeComponentOf } from "svelte-imperative"
-import MyComponent from "./MyComponent.svelte";
+import MyComponent from './MyComponent.svelte';
+import { ImperativeComponent, type ImperativeComponentOf } from 'svelte-imperative';
 
-const myComponent: ReactiveImperativeComponentOf<typeof MyComponent> = new ReactiveImperativeComponent(...)
+const createComponent = (): ImperativeComponentOf<typeof MyComponent> => new ImperativeComponent(...);
+const myComponent = createComponent();
 ```
 
 ## License

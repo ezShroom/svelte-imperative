@@ -1,26 +1,25 @@
 import type { Component, ComponentProps } from "svelte";
 
 /**
- * A wrapper class for imperatively managing Svelte components with reactive props.
+ * A wrapper class for imperatively managing Svelte components with props that can change..
  * Provides type-safe methods for mounting, updating props, and cleanup.
  * @template T The props type for the wrapped component
  */
-export declare class ReactiveImperativeComponent<
-  T extends Record<string, unknown>
-> {
+export declare class ImperativeComponent<T extends Record<string, unknown>> {
   /**
-   * Creates and mounts a new Svelte component with reactive props.
+   * Creates and mounts a new Svelte component with modifiable props.
    * @param {HTMLElement} container The DOM element to mount the component into
    * @param {import('svelte').Component<T, object, string>} component The Svelte component to mount
    * @param {T} initialProps Initial props to pass to the component
    * @example
    * ```ts
    * import MyComponent from './MyComponent.svelte';
-   * const myComponent = new ReactiveImperativeComponent(
+   * const myComponent = new ImperativeComponent(
    * 	document.getElementById('app'),
    * 	MyComponent,
    * 	{ message: 'Hello, world!' }
    * )
+   * ```
    */
   constructor(
     container: HTMLElement,

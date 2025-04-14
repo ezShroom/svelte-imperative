@@ -1,1 +1,1 @@
-export { ReactiveImperativeComponent } from "./logic.svelte";
+export { ImperativeComponent } from "./logic.svelte";
