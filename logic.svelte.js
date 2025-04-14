@@ -11,7 +11,7 @@ export class ImperativeComponent {
   /** @type {import('svelte').SvelteComponent} */
   #mountedComponent;
   /** @type {T} */
-  #props = $state({});
+  #props;
 
   /**
    * Creates and mounts a new Svelte component with modifiable props.
@@ -28,8 +28,8 @@ export class ImperativeComponent {
    * )
    * ```
    */
-  constructor(container, component, initialProps) {
-    Object.assign(this.#props, initialProps);
+  constructor(container, component, initialProps = {}) {
+    this.#props = $state(initialProps);
     this.#mountedComponent = mount(component, {
       target: container,
       intro: true,
@@ -58,8 +58,7 @@ export class ImperativeComponent {
 
   /**
    * Unmounts the component and cleans up all references.
-   * Should be called when the component is no longer needed.
-   * The destructor also implicitly calls destroy.`
+   * Should be called when the component is no longer needed and should be removed from the DOM.
    */
   destroy() {
     this.#destroy();

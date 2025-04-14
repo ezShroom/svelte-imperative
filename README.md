@@ -40,8 +40,10 @@ const myComponent = new ImperativeComponent(
 
 myComponent.modifyProps({ message: "Goodbye, world!" }); // Partially update props. Becomes { message: 'Goodbye, world!', element: 'h1' }
 myComponent.setProps({ message: "Hello, world!", element: "p" }); // Fully update props. Becomes { message: 'Hello, world!', element: 'p' }
-myComponent.destroy(); // Destroy the component. This is also implemented in the destructor method.
+myComponent.destroy(); // Destroy the component.
 ```
+
+`.destroy()` gets called for you automatically once the component goes out of scope if you use `using` (`using const myComponent = ...`).
 
 ### Type Safety
 

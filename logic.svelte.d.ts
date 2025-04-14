@@ -41,8 +41,7 @@ export declare class ImperativeComponent<T extends Record<string, unknown>> {
 
   /**
    * Unmounts the component and cleans up all references.
-   * Should be called when the component is no longer needed.
-   * The destructor also implicitly calls destroy.`
+   * Should be called when the component is no longer needed and should be removed from the DOM.
    */
   destroy(): void;
 
