@@ -42,6 +42,11 @@ export class ImperativeComponent {
    * @param {T} newProps The new props object that will completely replace existing props
    */
   setProps(newProps) {
+    // First, set all existing properties to undefined
+    for (const key in this.#props) {
+      this.#props[key] = undefined;
+    }
+    // Then set new values using the proxy's setters
     Object.assign(this.#props, newProps);
   }
 
@@ -50,10 +55,7 @@ export class ImperativeComponent {
    * @param {Partial<T>} partialProps Object containing only the props you want to update
    */
   modifyProps(partialProps) {
-    Object.assign(this.#props, {
-      ...this.#props,
-      ...partialProps,
-    });
+    Object.assign(this.#props, partialProps);
   }
 
   /**
